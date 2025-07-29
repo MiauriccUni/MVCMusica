@@ -29,7 +29,17 @@ public class UsersController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable("id") Long id) {
-        usersService.deleteById(id);
+    public String deleteById(@PathVariable("id") Long id) {
+        try {
+            findById(id);
+            if (usersService.findById(id).isPresent()) {
+                usersService.deleteById(id);
+                return "Usuario eliminado";
+            } else{
+                return "Usuario no encontrado";
+            }
+        }catch (Exception e){
+            return "Usuario no encontrado";
+        }
     }
 }

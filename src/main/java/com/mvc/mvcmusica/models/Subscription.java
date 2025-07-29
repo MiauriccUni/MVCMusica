@@ -1,5 +1,6 @@
 package com.mvc.mvcmusica.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -16,6 +17,7 @@ public class Subscription {
     private Double price;
     private String description;
     @OneToMany(mappedBy = "subscription")
+    @JsonIgnore
     private List<Users> usersList;
 
 }
